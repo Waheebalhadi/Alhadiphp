@@ -1,0 +1,986 @@
+﻿<!DOCTYPE html>
+<html lang="ar">
+  <head>
+
+    <meta charset="UTF-8" />
+    <title data-network-title="">شبكة{{network-title}}   نت اللاسلكية</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="theme-color" content="#8277d1" />
+  
+    <link rel="shortcut icon" type="image/x-icon" href="img/logo.jpg" />
+    <link rel="stylesheet" href="css/fontello.min.css" />
+    <link rel="stylesheet" href="css/style.min.css" />
+	<link rel="stylesheet"href="css/color.min.css">
+	<link rel="stylesheet"href="css/colot.css">
+	<link rel="stylesheet"href="css/mood.css">
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+  <!--link rel="stylesheet" href="css/wifi.css"-->
+  <!--link rel="stylesheet" href="css/wifi2.css"-->
+  <!-- <link rel="stylesheet" href="css/wifi3.css"> -->
+
+<meta http-equiv="Cache-Control" content="max-age=172800, public">
+<meta http-equiv="Pragma" content="cache">
+<meta http-equiv="Expires" content="Fri, 31 Jan 2050 12:00:00 GMT">
+
+    <style>
+      
+    .sidebar {
+        background: #343a40;
+        color: white;
+        padding: 1.5rem;
+        height: 100vh;
+        position: fixed;
+        width: 250px;
+        transition: all 0.3s;
+        z-index: 1000;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: 0.75rem 1rem;
+        margin: 0.5rem 0;
+        border-radius: 5px;
+        transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+        background: #495057;
+    }
+
+    .main-content {
+        margin-right: 250px;
+        padding: 1.5rem;
+        transition: margin 0.3s;
+    }
+
+    @media (max-width: 991px) {
+        .sidebar {
+            position: fixed;
+            right: -250px;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .main-content {
+            margin-right: 0;
+            padding: 1rem;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            left: 1rem;
+            top: 1rem;
+            z-index: 1001;
+        }
+    }
+    img {
+        cache-control: max-age=604800;
+    }
+</style>
+    <!--meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" /-->
+  </head>
+
+  <body translate="no"  class="bd bd_color" >
+   
+    <div class="container-fluid">
+      <!-- الشريط الجانبي -->
+      <div class="sidebar">
+          <h2>القائمة</h2>
+          <ul>
+              <li><a href="#">🏠 الصفحة الرئيسية</a></li>
+              <li><a href="manage_ads.php">📢 إدارة الإعلانات</a></li>
+              <li><a href="color_settings.php">🎨 تعديل الألوان</a></li>
+              <li><a href="index.php">💳 أسعار الكروت والنص المتحرك ونقاط البيع</a></li>
+              <li><a href="edit_settings.html">⚙️ خيارات الصفحة وإدارة الإعدادات</a></li>
+              <li><a href="view_items.php">📋 عرض التعديلات</a></li>
+              <li><a href="change_password.html">🔑 تغيير كلمة المرور</a></li>
+              <li><a href="logout.php">🚪 تسجيل الخروج</a></li>
+          </ul>
+      </div>
+
+      <!-- المحتوى الرئيسي -->
+      <div class="main-content">
+               <div id="imges22" style="height: 43px;" class="hidden" >
+                <img id="imges2"  style="height: 89px; width: 147px;     filter: invert(1); " src=""  loading="lazy" alt="">
+
+      
+    </div>     
+    <div class="container-top" >    <div id="slider-container-top" style="display:none"  >
+	
+	
+<button id="prev-button-top" class="slider-arrow left-arrow" >❮</button>
+    <button id="next-button-top" class="slider-arrow right-arrow" >❯</button>
+
+<div id="image-indicator-top" class="slider-indicator-top" >
+    <!-- سيتم إنشاء النقاط تلقائيًا بواسطة JavaScript -->
+</div>
+
+
+</div>
+	
+  </div>
+
+    <div id="full-screen-alert"   data-service-number=""	>
+      عزيزنا العميل لا يمكنك تسجيل الدخول ، أنت متصل من جهاز مبرمج بطريقة غير صحيحة. يرجى التواصل على الرقم {{service-number}} وإحضار الجهاز إلينا لإعادة برمجته.
+              <div id="countdown" ></div>
+          </div>
+    <div class="background"></div>
+    <div class="container">
+      <div style="margin-bottom: -35px;">
+        <div class="error-container">
+          <div class="error">
+            <div class="fade-in">
+              <p id="error"></p>
+            </div>
+            <button class="button app-submit">أغلاق</button>
+          </div>
+        </div>
+		
+		
+        <div id="chose-speed" class="speed-container">
+          <div class="wrapper wrapper_bg">
+            <p class="title title_bg">يرجى اختيار سرعة كرتك!!</p>
+            <div style="padding: 25px;">
+         
+			  </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen sc">
+          <div id="wifi-loaders">
+            <svg class="circle-outer" viewBox="0 0 86 86">
+                <circle class="back" cx="43" cy="43" r="40"></circle>
+                <circle class="front" cx="43" cy="43" r="40"></circle>
+                <circle class="new" cx="43" cy="43" r="40"></circle>
+            </svg>
+            <svg class="circle-middle" viewBox="0 0 60 60">
+                <circle class="back" cx="30" cy="30" r="27"></circle>
+                <circle class="front" cx="30" cy="30" r="27"></circle>
+            </svg>
+            <svg class="circle-inner" viewBox="0 0 34 34">
+                <circle class="back" cx="17" cy="17" r="14"></circle>
+                <circle class="front" cx="17" cy="17" r="14"></circle>
+            </svg>
+                <div class="text" id="wifiText" data-text="" ></div>
+        </div>
+        
+               <div id="wifi-loader">
+                <div class="signal"></div>
+                <div class="signal"></div>
+                <div class="signal"></div>
+                <div class="signal"></div>
+              </div>
+              <div class="loader">
+                <span class="loader-text" id="netwrkname" data-net-name-en>{{net-name-en}} </span>
+            </div>
+          <div class="screen-content">
+            
+            <div class="login" id="login">
+              
+              <div class="imges">
+                <img id="delayed-image" src="img/logo.jpg"  loading="lazy" alt="">
+                <img id="delayed-image" src="img/logo.png"  loading="lazy" alt="">
+
+              </div>
+              
+            <div id="imges44" class="hidden"> 
+              <img id="imges4" src=""  class="imges4 " loading="lazy" alt="">
+            </div>
+              <div class="logo screen-background-shape"></div>
+			<form class="login-form" name="login">
+              
+                <div id="scrolling-text">
+                    <div id="scroll-text-content"></div>
+                </div>
+
+                <div class="login-field">
+                  
+                  <div id="imges33" class="imges3 hidden">
+                    <!--img src="img/18.png" alt=""-->
+               
+                    <img id="imges5" src=""  class="imges5" loading="lazy" alt="">
+                    <img id="imges6" src=""  class="imges6" loading="lazy" alt="">
+
+                  </div>
+				  
+				  
+                  <!--input 
+                  name="username" 
+                  id="username" 
+                  class="login-input" 
+                  type="password" 
+                  value="$(username)" 
+                  placeholder="ادخل هنا رقم الكرت" 
+                  autocomplete="on" 
+              
+                  onfocus="if(this.value === '$(username)') { this.value = ''; this.type='tel'; }" 
+                  onblur="if(this.value === '') { this.value = '$(username)'; this.type='password'; }"
+                  username-field="" 
+                  improve-input 
+                  rm-white-spaces 
+                  to-lower 
+                  to-arabic-numbers
+                  style="direction:ltr"
+              /-->
+          
+              <!-- <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+            </svg>
+         -->
+      
+        <input 
+        name="username" 
+        id="username" 
+        class="login-input" 
+        type="password" 
+        value="$(username)" 
+        placeholder="ادخل هنا رقم الكرت" 
+        autocomplete="on" 
+        oninput="this.type='text';" 
+        onfocus="if(this.value === '$(username)') { this.value = ''; this.type='text'; }" 
+        onblur="if(this.value === '') { this.value = '$(username)'; this.type='password'; }"
+        username-field="" 
+        improve-input 
+        rm-white-spaces 
+        to-arabic-numbers
+        style="direction:ltr"
+    /-->
+                </div>
+                <div class="login-field password-field">
+
+
+                  
+                  <input type="hidden" name="password"  class="login-input" placeholder="ادخل كلمة السر هنا" improve-input="" />
+				  
+                </div>
+				
+				   <button class="button login-submit btn btn_color " parent-id="status" enable-hot-cookie="">
+                <div class="button-text"></div
+
+                  >تسجيل الدخول
+              </button>
+              <!-- <span class="text-overlay2" class="text4">تسجيل الدخـول</span> -->
+
+				
+				<br>
+				<br>
+								  	<button class="button btn buttonopsion  btn_color " onclick="window.location='https://laksa19.github.io/myqr';">QR Code</button>
+                    
+                    
+                	    <button type="button" class="button btn buttonopsion  btn_color" id="showOptionsButton">عرض الخيارات</button>
+                      <button id="quran" class="button btn buttonopsion  btn_color " onclick="window.location='https://quran.tv';">القران مجانا</button>
+
+                  
+                      <select class="sc_bg_shape8" id="speed" name="domain" speed-field="">
+					  	 													   
+					   <option value="512K/2048K|noalnooah|all|vpn|no|no" id="peed2M">سرعة متوسطة 2 ميجا</option>
+					  					  					
+										
+		 <option value="256K/1024K|noalnooah|all|vpn|no|no" id="peed1M">سرعة عادية 1 ميجا</option>
+
+						   <option value="1024K/4096K|noalnooah|all|vpn|no|no"  id="peed4M">سرعة عالية 4 ميجا</option>
+				
+																   
+					   <option value="512K/2048K|noalnooah|all|vpn|no|no" id="peed2M">سرعة متوسطة 2 ميجا</option>		   
+																   
+					  						                       
+					  						 <option value="2048K/8192K|noalnooah|all|vpn|no|no" id="peed8M">سرعة عالية 8 ميجا</option>
+
+     <option value="128K/512K|noalnooah|all|vpn|no|no"  id="peed512K">سرعة منخفضة 512K</option>
+                       
+                          <option value="4M/16M|noalnooah|all|vpn|no|no" class="hidden" id="peed16M">سرعة فائقة</option>
+                        <option value="">سرعة أفتراضية</option>	
+                       </select>											
+                                                    
+										    <!--select class="sc_bg_shape8" id="speed" name="domain" speed-field="">
+																	                        <option value="256K/1024K|noalnooah|all|vpn|no|no" id="peed1M">سرعة عادية </option>
+
+						                        <option value="512K/2048K|noalnooah|all|vpn|no|no" id="peed2M">سرعة متوسطة </option>
+
+
+						   <option value="1024K/4096K|noalnooah|all|vpn|no|no"  id="peed4M">سرعة عالية </option>
+                     
+						
+						   <option value="2048K/8192K|noalnooah|all|vpn|no|no" id="peed8M">سرعة عالية  جدا</option>
+                          <option value="128K/512K|noalnooah|all|vpn|no|no"  id="peed512K">سرعة منخفضة </option>
+                         
+                       
+                          <option value="4M/16M|noalnooah|all|vpn|no|no" class="hidden" id="peed16M">سرعة فائقة</option>
+                        <option value="">سرعة أفتراضية</option>	
+                        اسعار الكروت  		                    
+                       </select-->					
+					
+     <button type="button" class="button btn buttonopsion btn_color index type" id="showCardPricesButton" data-price-button="" > أسعار الكروت</button>
+	 
+     <button type="button" class="button btn buttonopsion btn_color index"  data-sell-point-button="" id="showSellPointsButton"> نقاط البيع</button>
+			
+
+     <h5 class="servicenumber" data-service-number="" >خدمة العملاء:{{service-number}}</h5>
+				
+				  </form>
+  <div id="optionsModal" class="modal">
+  <div class="modal-content wrapper_bg">
+    <span class="close">&times;</span>
+ 
+   
+     <h2><span id="network-id-display"></span></h2>
+     <h2><h2><span id="network-name-display"></span></h2>
+
+   
+    <div class="checkboxes" >
+
+
+                 <div id="upcl-settings" >      <label><input type="checkbox" id="upcl" name="upcl" value="offalnooah" onchange="updateSpeedValue()"> إيقاف التحديثات</label></div>
+          <div id="face-settings" >   
+            
+                  
+            <div id="faceNotification" style="display: none; padding: 10px; background-color: #ffcccc; color: #a94442; border: 1px solid #a94442; border-radius: 5px; margin-top: 10px; font-weight: bold;">
+              تنبيه: الكرت لن يعمل إلا على الفيس بوك والواتس آب فقط.
+          </div>
+            <select id="face" name="face" onchange="updateSpeedValue()">
+              <option value="all" selected="selected" disabled="disabled" hidden="">كرت واتساب و فيس بوك</option>
+              <option value="all"   >كرت عادي عدم التحديد</option>
+      
+              <option value="offalnooahapp">جعل الكرت يعمل فقط للفيس والوتس</option>
+      
+          </select>
+            
+            <!--label><input type="checkbox" id="face" name="face" value="offalnooahapp" onchange="updateSpeedValue()"> كرت فيس و واتساب فقط</label--></div>
+	</div>
+	       
+
+	
+	
+  </div>
+</div>
+
+<div id="cardPricesModal" class="modal">
+  <div class="modal-content wrapper_bg">
+      <span class="close">&times;</span><br>
+      <!-- محتوى النافذة المنبثقة لعرض أسعار الكروت -->      
+      <div class="price-div">
+        <div class="wrapper ">
+          <div class="shadow">
+          <p class="title col_2">الاسعار</p>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">الفئة</th>
+                <th scope="col">الوقت</th>
+                <th scope="col">الرصيد</th>
+                <th scope="col">الصلاحية</th>
+              </tr>
+            </thead>
+            <tbody id="profiles"></tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+
+
+
+  </div>
+</div>
+<div id="sellPointsModal" class="modal">
+  <div class="modal-content wrapper_bg">
+      <span class="close">&times;</span>
+      <!-- محتوى النافذة المنبثقة لعرض نقاط البيع -->
+       
+    
+      <div class="sell-point-div">
+        <div class="wrapper ">
+          <p class="title col_2">نقاط البيع</p>
+          <table>
+            <tbody class="sell-point" id="sell-points"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="social-login">
+    
+      </div>
+   
+  </div>
+  
+</div>
+
+
+<br><br>          
+<div id="image-slider" class="slider-container" style="display:none">
+    <!-- الصور سيتم إضافتها هنا بواسطة JavaScript -->
+    <button id="prev-button" class="slider-arrow left-arrow">❮</button>
+    <button id="next-button" class="slider-arrow right-arrow">❯</button>
+	
+	<div id="image-indicator" class="slider-indicator">
+    <!-- سيتم إنشاء النقاط تلقائيًا بواسطة JavaScript -->
+</div>
+
+</div>
+
+            <div class="social-login" style="display:none">
+              <!--                 
+                              <button class="button app-submit price-icon btn" parent-id="price" data-price-button="">أسعارالكروت</button>
+                              <button class="button app-submit sell-point-icon btn" parent-id="sell-point" data-sell-point-button="">نقاط
+                              البيع</button>
+                               -->          
+                           
+                            </div>
+                            
+
+            </div>
+
+            <div class="app" id="price">
+              <div class="price-div">
+                <div class="wrapper wrapper_bg">
+                  <p class="title col_2">الاسعار</p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th scope="col">الفئة</th>
+                        <th scope="col">الوقت</th>
+                        <th scope="col">الرصيد</th>
+                        <th scope="col">الصلاحية</th>
+                      </tr>
+                    </thead>
+                    <tbody id="profiles"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="social-login">
+                <button class="app-logout button app-submit back btn"> تسجيـل الدخـول</button>
+				
+              </div>
+            </div>
+            <div class="app" id="sell-point">
+              <div class="sell-point-div">
+                <div class="wrapper ">
+                  <!-- <p class="title title_bg">نقاط البيع</p> -->
+                  <table>
+                    <tbody class="sell-point" id="sell-points"></tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="social-login">
+                <button class="app-logout button app-submit back btn"> تسجيـل الدخـول</button>
+              </div>
+            </div>
+            
+            <div class="app" id="status">
+                
+              <div class="status-div">
+                <div class="wrapper wrapper_bg">
+				 <!--button type="button" class="app-submit extra-submit btn" data-esterahah="http://10.10.10.10/">الاستراحة</button>
+				                   <br />
+                  <br />
+
+                <button type="button" class="button app-submit extra-submit btn" data-mobasher="http://10.10.10.10:85">البث المباشر</button-->
+
+                  <button id="direct-break-button" class="buttonopsion btn  btn_color" style="display:none;">استراحة</button>
+<button id="direct-live-button" class="buttonopsion  btn_color" style="display:none;">البث المباشر</button>
+
+<button id = "controle" class="button btn buttonopsion  btn_color control " onclick="window.location='http://hotspot.alnooah.pro';">لوحة التحكم</button>
+<button class=" app-logout btn btn_color  buttonopsion">تعديل الخيارات</button>
+
+
+                  <p class="title title_bg" id="status-title">تم تسجيل دخولك بنجاح!</p>
+                  <table>
+               
+                    <tr>
+                      <td>سرعة الكرت</td>
+                      <td id="sspeed"></td>
+           </tr>
+           <tr style="display: none;">
+            <td>سرعة الكرت</td>
+            <td id="speed-status"></td>
+
+        </tr>
+        <tr>
+          <td>اسم المستخدم</td>
+          <td id="uusername" style="direction:ltr"></td>
+      </tr>
+           <tr>
+               <td>اتصال VPN</td>
+               <td id="vpn-status"></td>
+           </tr>
+           <tr>
+               <td>إيقاف التحديثات</td>
+               <td id="upcl-status"></td>
+           </tr>
+           <tr>
+               <td>كرت فيس وواتساب فقط</td>
+               <td id="face-status"></td>
+           </tr>
+           <tr>
+               <td>عدد المستخدمين</td>
+               <td id="user-count-status"></td>
+           </tr>
+           <tr>
+               <td>ربط الكرت بأول جهاز</td>
+               <td id="bind-status"></td>
+           </tr>
+               <tr>
+                   <td>التنزيل</td>
+                   <td id="bytes_out"></td>
+               </tr>
+               <tr>
+                   <td>الرفع</td>
+                   <td id="bytes_in"></td>
+               </tr>
+               <tr remain_bytes_total="">
+                   <td>التحميل المتبقي</td>
+                   <td id="remain_bytes_total"></td>
+               </tr>
+               <tr>
+                   <td>الوقت المستهلك</td>
+                   <td id="uptime"></td>
+               </tr>
+               <tr session_time_left="">
+                   <td>الوقت المتبقي</td>
+                   <td id="session_time_left"></td>
+               </tr>
+           </table>
+
+                  <br />
+                  <br />
+                  <!--p class="pspeed">أختيار سرعات عالية يسبب انتهاء الكرت بسرعة بسبب التطبيقات التي تستهلك أنترنت أكثر
+                  <br />أختر سرعة اقل للحفاظ على الكرت</p>
+                  <br />
+                  <br /-->
+                  <button class=" login-submit app-logout btn btn_color" erase-cookie="" clear-hot-cookie="">  تسجيـل الخروج</button>
+                  <br />
+				                    <br />
+
+                  <button class="login-submit app-logout btn btn_color">قطع الاتصال</button>
+                  <br />
+                  <br />
+                </div>
+			
+               
+              </div>
+              <!--button class="button app-submit sell-point-icon app-store btn" parent-id="app-store"
+              data-app-store-status-button="">متجر البرامج</button-->
+            </div>
+            <div class="app" id="block">
+              <div class="status-div">
+                <div class="wrapper wrapper_bg">
+                  <p class="title title_bg">انت محظور</p>
+                  <div style="padding: 25px">
+                    <p class="contact-text">لقد تم حظرك بسبب محاولات تسجيل الدخول الكثيرة الخاطئة</p>
+                    <div class="app-user">
+                      <span>بقي على فك الحظر:</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="social-login">
+                <h5 class="contact back" data-service-number="">خدمة العملاء:{{service-number}}</h5>
+              </div>
+            </div>
+            <div class="app" id="app-store">
+              <div class="sell-point-div">
+                <div class="wrapper wrapper_bg" id="grid"></div>
+              </div>
+              <div class="social-login">
+                <button class="app-logout button app-submit back btn">الصفحة السابقة</button>
+                <h5 class="contact back" data-service-number="">خدمة العملاء:{{service-number}}</h5>
+              </div>
+            </div>
+            <div class="app" id="loan">
+              <div class="social-login">
+                <button class="app-logout button app-submit back btn">الصفحة السابقة</button>
+                <h5 class="contact back" data-service-number="">خدمة العملاء:{{service-number}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="screen-background title_bg ">
+            <div class="screen-background-shape screen-background-shape6">
+         
+            </div>
+           
+			<!--	div class="mark " >
+		  <--marquee class="marquee" direction="right" scrollamount="5" >
+    <div class="marquee"  style="    background: #173672; color:white"id="marqueeText"></div>
+
+			  </marquee>
+ 
+            
+        
+			  </div-->
+           
+      
+        
+            <div class="screen-background-shape screen-background-shape4 sc-bg-shape1"></div>
+            
+            <div class="screen-background-shape screen-background-shape1"></div>
+            <div class="screen-background-shape screen-background-shape7 sc-bg-shape4"></div>
+            <div class="screen-background-shape screen-background-shape8 sc-bg-shape8">
+                <div class="scrolling-container">
+                    <div class="scrolling-text" id="scrolling-text">         <div id="scroll-text-content"></div>
+                  </div>
+                    
+                </div>
+                
+            </div>
+            <div class="screen-background-shape screen-background-shape9 sc-bg-shape6  sc_bg_shape8"  id="sc_bg_shape8" > 
+                
+			<div class="network-prefix" data-n-n >{{n-n}} 
+                    </div>
+                    <div id="scroll-text-content"></div>
+                   
+                  
+					  <!-- ديف عرض النص المتحرك -->
+
+					</div>
+          </div>
+        </div>
+        <br/>
+      </div>
+    </div>
+
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+      var speedrest = document.getElementById('speed');
+      var upcl = document.getElementById('upcl');
+      var bind = document.getElementById('bind');
+      var vpn = document.getElementById('vpn');
+      var userCount = document.getElementById('userCount');
+      function getCookieValue(name) {
+          var value = "; " + document.cookie;
+          var parts = value.split("; " + name + "=");
+          if (parts.length === 2) return parts.pop().split(";").shift();
+          return null;
+      }
+  
+      function setCookie(name, value, days) {
+          var expires = "";
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = "; expires=" + date.toUTCString();
+          }
+          document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+  
+      function updateSpeedValueCookie() {
+          var selectedOp = speedrest.options[speedrest.selectedIndex];
+  
+          if (selectedOp) {
+              var value = selectedOp.value;
+  
+              setCookie('speed', value, 7);
+            
+  
+     
+              
+              console.log("Updated 'speed' in cookies:", value);
+          }
+  
+  
+          if (upcl.checked) setCookie('upcl', upcl.value, 7);
+  //        if (face.checked) setCookie('face', face.value, 7);
+  //setCookie('userCount', value, 7);
+  //setCookie('face', value, 7);
+  setCookie('vpn', value, 7);
+       ///       setCookie('bind', value, 7);
+  
+      }
+  
+      function loadValuesFromCookies() {
+          var savedValue = getCookieValue('speed'); 
+  
+          if (savedValue) {
+              var speedParts = savedValue.split('|'); 
+              var options = speedrest.options; 
+  
+              for (var i = 0; i < options.length; i++) {
+                  var optionParts = options[i].value.split('|'); 
+                  if (optionParts[0] === speedParts[0]) { 
+                      options[i].setAttribute('selected', 'selected'); 
+                      break;
+                  }
+              }
+          }
+  
+         // console.log("Loaded 'speed-value' from cookies:", savedValue);
+      }
+  
+      loadValuesFromCookies();
+  
+  
+      document.querySelector('.login-submit').addEventListener('click', updateSpeedValueCookie);
+  });
+  
+  
+  
+  </script>
+      <script>
+    function getCookieValue(name) {
+      var value = "; " + document.cookie;
+      var parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null; 
+  }
+  
+  
+  function loadOtherValuesFromCookies() {
+      var checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+  
+      var vpnSelectElement = document.getElementById('vpn-select');
+      var userCountElement = document.getElementById('user-count');
+      var userCountElement = document.getElementById('face');
+      var bindCountElement = document.getElementById('bind');
+  
+  
+  
+  checkboxes.forEach(function (checkbox) {
+      var savedValuech = getCookieValue(checkbox.id);
+      if (savedValuech !== null && savedValuech === checkbox.value) {
+          checkbox.checked = true;
+      } else {
+          checkbox.checked = false;
+      }
+  });
+      vpnSelectElement.value = getCookieValue('vpn') || vpnSelectElement.options[0].value;
+      //userCountElement.value = getCookieValue('userCount') || userCountElement.options[0].value;
+    //  bindCountElement.value = getCookieValue('bind') || bindCountElement.options[0].value;
+    //  bindCountElement.value = getCookieValue('face') || bindCountElement.options[0].value;
+  
+    
+  }
+  
+  
+  document.addEventListener('DOMContentLoaded', function() {
+      loadOtherValuesFromCookies();
+  });
+      </script>
+     
+  
+    <script>
+    
+  function updateSpeedValue() {
+      var speedElement = document.getElementById('speed');
+      var checkboxes = document.querySelectorAll('.checkboxes input[type="checkbox"]');
+      var vpnSelectElement = document.getElementById('vpn-select');
+      var userCountElement = document.getElementById('user-count');
+      var bindtElement = document.getElementById('bind');
+      var faceSelectElement = document.getElementById('face');
+  
+      var selectedOption = speedElement.options[speedElement.selectedIndex];
+  
+      if (!selectedOption) {
+       //   console.error("No option selected in the <select> element.");
+          return;
+      }
+  
+      var originalValue = selectedOption.getAttribute("original-value") || selectedOption.value;
+  
+      if (originalValue.trim() === "") {
+         // console.error("The selected option's value is empty.");
+          return;
+      }
+  
+      var values = originalValue.split('|');
+  
+      checkboxes.forEach(function (checkbox) {
+          if (checkbox.id === 'upcl') {
+              values[1] = checkbox.checked ? checkbox.value : 'noalnooah';
+          }
+          // if (checkbox.id === 'face') {
+          //     values[2] = checkbox.checked ? checkbox.value : 'all';
+          // }
+       
+      });
+  
+      values[2] = faceSelectElement.value;
+      values[3] = vpnSelectElement.value;
+      values[4] = userCountElement.value;
+      values[5] = bindtElement.value;
+  
+      selectedOption.setAttribute("original-value", values.join('|'));
+      speedElement.options[speedElement.selectedIndex].value = values.join('|');
+  
+   
+   
+     setCookie('speed', values.join('|'), 7);
+      setCookie('upcl', document.getElementById('upcl').checked, 7);
+      // setCookie('face', document.getElementById('face').checked, 7);
+      setCookie('vpn', vpnSelectElement.value, 7);
+      //setCookie('face', faceSelectElement.value, 7);
+      // setCookie('userCount', userCountElement.value, 7);
+      // setCookie('bind', bindtElement.value, 7);
+  
+    //  console.log("Updated option value1:", selectedOption.value);
+      updateTableStatus(values);
+  
+  }
+  
+  
+  function updateTableStatus(values) {
+          document.getElementById('speed-status').innerText = values[0] || 'غير محدد';
+          document.getElementById('upcl-status').innerText = values[1] === 'noalnooah' ? 'غير فعال' : 'فعال';
+          document.getElementById('face-status').innerText = values[2] === 'all' ? 'جميع التطبيقات' : 'فيس و واتس فقط';
+          document.getElementById('vpn-status').innerText = values[3] === 'novpn' ? 'غير فعال' : 'فعال';
+          document.getElementById('user-count-status').innerText = values[4] || 'غير محدد';
+          document.getElementById('bind-status').innerText = values[5] ||  'غير محدد';
+    
+          function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+    
+          setCookie('speed', domainValue , 7);
+          setCookie('upcl', values[1] , 7);
+     // setCookie('face', values[2] ,1);
+      setCookie('vpn', values[3] , 7);
+      //setCookie('userCount', values[4] , 1);
+    //  setCookie('bind', values[5] , 1);
+    
+        }
+  document.addEventListener('DOMContentLoaded', function() {
+      updateSpeedValue();
+      document.getElementById('speed').addEventListener('change', updateSpeedValue);
+      document.getElementById('upcl').addEventListener('change', updateSpeedValue);
+      document.getElementById(' face').addEventListener('change', updateSpeedValue);
+      document.getElementById('bind').addEventListener('change', updateSpeedValue);
+      document.getElementById('vpn-select').addEventListener('change', updateSpeedValue);
+      document.getElementById('user-count').addEventListener('change', updateSpeedValue);
+  });
+  
+  var domainValue = "$(domain)";
+      var domainParts = domainValue.split('|');
+  
+       if (domainParts.length >= 6) {
+          updateTableStatus(domainParts);
+         // console.log(' domainParts value :', domainParts);
+  
+          
+      } else {
+        //  console.error(' domainValue  :', domainValue);
+  
+  
+  
+      }
+          var domainValue = "$(domain)";
+
+      let loginStatusChecker = setInterval(() => {
+    if (typeof loggedIn !== "undefined" && loggedIn === true) {
+        clearInterval(loginStatusChecker); // إيقاف التحقق الدوري
+
+        // تعريف domainValue بعد تسجيل الدخول فقط
+        var domainValue = "$(domain)";
+        var domainParts = domainValue.split('|');
+
+        if (domainParts.length >= 6) {
+            updateTableStatus(domainParts); // استدعاء الدالة لتحديث الجدول
+
+
+  
+            function maskUsername(username) {
+        const halfLength = Math.ceil(username.length / 2);
+        const visiblePart = username.substring(0, halfLength);
+        const maskedPart = '*'.repeat(username.length - halfLength);
+        return visiblePart + maskedPart;
+    }
+  
+    var username = "$(username)"; 
+  
+    var maskedUsername = maskUsername(username);
+  
+    document.getElementById('uusername').textContent = maskedUsername;
+  
+            
+          //  console.log('domainParts value:', domainParts); // طباعة القيم
+        } else {
+            //console.error('domainValue:', domainValue); // تسجيل خطأ إذا كانت القيم غير مكتملة
+        }
+    } else {
+    }
+}, 1000); 
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  <script>
+  
+  
+     
+  </script>
+
+<script src="js/init.min.js"></script>
+<script src="js/main.min.js"></script>
+<script src="js/hotInImprover.min.js"></script>
+<script src="js/hotCookie.min.js"></script>
+<script src="js/hotOptions.min.js"></script>
+<script src="js/hotBlocker.min.js"></script>
+<script src="js/options.js"></script>
+<script src="javascript/ops1.js"></script>
+
+<script src="javascript/profiles.js"></script>
+
+<script src="javascript/points.js"></script>
+
+
+<script>
+
+
+
+
+</script>
+
+<script>
+  </script>
+
+
+<script>
+  
+  document.addEventListener('DOMContentLoaded', function() {  
+  
+    });
+  
+    
+
+  </script>
+
+
+    <script src="javascript/cg.js"></script>
+
+<script>
+
+  
+
+  </script>
+  
+  <script>
+
+  </script>
+<script>
+   
+</script>
+  <script>
+    
+    
+  </script>
+      <script src="javascript/en.js"></script>
+
+  </body>
+</html>
+	
